@@ -31,6 +31,10 @@ You can expose it as an exported file or a service endpoint; ajax doesn't care.
 
 ### Prerequisites: Node.js + npm
 1. Install https://nodejs.org/en/
+
+### bizarre note about gulp
+gulp-cli may throw an error if you install it locally, but not globally. you may have to 
+```npm install -g gulp-cli --save dev```
   
 ### Update dependencies
 In a node command window:
