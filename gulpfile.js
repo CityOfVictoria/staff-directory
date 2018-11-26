@@ -65,31 +65,28 @@ function copyBuild(buildName, to) {
     return gulp.src(['builds/' + buildName + '/**']).pipe(gulp.dest(to));
 }
 
-gulp.task('dev:dev-assets', [], function () { return copyDevAssets('index', 'dev'); });
-gulp.task('dev:assets', [], function () { return copyAssets('index', 'dev'); });
-gulp.task('dev:css', [], function () { return cleanCss('dev'); });
-gulp.task('dev:code', [], function () { return build('dev', { minify: false }); });
-gulp.task('dev', ['dev:assets', 'dev:code', 'dev:css', 'dev:dev-assets']);
+exports.default = gulp.parallel(
+    function () { return copyDevAssets('index', 'dev'); },
+    function () { return copyAssets('index', 'dev'); },
+    function () { return cleanCss('dev'); },
+    function () { return build('dev', { minify: false }); }
+)
 
-gulp.task('dev-edit:assets', [], function () { return copyAssets('edit', 'dev-edit'); });
-gulp.task('dev-edit:dev-assets', [], function () { return copyDevAssets('edit', 'dev-edit'); });
-gulp.task('dev-edit:css', [], function () { return cleanCss('dev-edit'); });
-gulp.task('dev-edit:code', [], function () { return buildEdit('dev-edit', { minify: false }); });
-gulp.task('dev-edit', ['dev-edit:assets', 'dev-edit:code', 'dev-edit:css', 'dev-edit:dev-assets']);
+exports['dev-edit'] = gulp.parallel(
+    function () { return copyDevAssets('edit', 'dev-edit'); },
+    function () { return copyAssets('edit', 'dev-edit'); },
+    function () { return cleanCss('dev-edit'); },
+    function () { return build('dev-edit', { minify: false }); }
+)
 
-gulp.task('watch', ['dev'], function () {
-    gulp.watch(['./assets/**'], ['dev:assets']);
-    gulp.watch(['./dev-assets/**'], ['dev:dev-only-assets']);
-    gulp.watch(['./css/**'], ['dev:css']);
-    gulp.watch(['./src/**'], ['dev:code']);
-});
+exports.dist = gulp.parallel(
+    function () { return copyAssets('index', 'dist'); },
+    function () { return cleanCss('dist'); },
+    function () { return build('dist', { minify: false }); }
+)
 
-gulp.task('dist:assets', [], function () { return copyAssets('index', 'dist'); });
-gulp.task('dist:css', [], function () { return cleanCss('dist'); });
-gulp.task('dist:code', [], function () { return build('dist'); });
-gulp.task('dist', ['dist:assets', 'dist:code', 'dist:css']);
-
-gulp.task('dist-edit:assets', [], function () { return copyAssets('edit', 'dist-edit'); });
-gulp.task('dist-edit:css', [], function () { return cleanCss('dist-edit'); });
-gulp.task('dist-edit:code', [], function () { return buildEdit('dist-edit'); });
-gulp.task('dist-edit', ['dist-edit:assets', 'dist-edit:code', 'dist-edit:css']);
+exports['dist-edit'] = gulp.parallel(
+    function () { return copyAssets('edit', 'dist-edit'); },
+    function () { return cleanCss('dist-edit'); },
+    function () { return build('ddistev-edit', { minify: false }); }
+)

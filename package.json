@@ -1,10 +1,11 @@
 {
     "devDependencies": {
-        "gulp": "^3.9.1",
+        "gulp": "^4.0.0",
         "gulp-autoprefixer": "^3.1.1",
         "gulp-clean-css": "^2.0.7",
+        "gulp-cli": "^2.0.1",
         "gulp-slash": "^1.1.3",
-        "http-server": "^0.9.0",
+        "http-server": "^0.11.1",
         "jspm": "^0.17.0-beta.13"
     },
     "jspm": {
@@ -112,6 +113,7 @@
         }
     },
     "scripts": {
-        "web": "http-server ./builds/dev/ --cors -p 9080 -d false"
+        "web": "http-server ./builds/dev/ --cors -p 9080 -d false",
+        "jspm": "jspm"
     }
 }

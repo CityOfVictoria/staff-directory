@@ -1,1 +1,0 @@
-npm install -g npm & npm update npm -g & npm install jspm@beta -g

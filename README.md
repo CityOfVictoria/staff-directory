@@ -29,17 +29,14 @@ You can expose it as an exported file or a service endpoint; ajax doesn't care.
 
 ## Dev Environment
 
-### Prerequisites: Node.js + npm + jspm
+### Prerequisites: Node.js + npm
 1. Install https://nodejs.org/en/
-1. Install tools in a node command window:
-  ```
-  install
-  ```
   
 ### Update dependencies
 In a node command window:
   ```
-  update
+  npm install 
+  npm run jspm install
   ```
   
 ### Build
@@ -47,14 +44,9 @@ In a node command window:
 #### Build for development
 In a node command window:
 ```
-gulp dev
+gulp
 ```
 build will output into ./dev
-
-you can also watch using 
-```
-gulp watch
-```
 
 #### Build for deployment
 In a node command window:
@@ -62,6 +54,13 @@ In a node command window:
 gulp dist
 ```
 and it will output into ./dist
+
+#### Build editors
+Editors are separate installs. Apply permissions to this install accordingly and point it at something that edits your staff source.
+```
+gulp dev-edit
+gulp dist-edit
+```
 
 ### Try
 
